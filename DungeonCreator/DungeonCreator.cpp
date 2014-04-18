@@ -4,16 +4,21 @@
 #include "stdafx.h"
 #include <iostream>
 
+#include "Grid.h"
+
 using namespace std;
 
 void print();
 
-int _tmain(int argc, _TCHAR* argv[])
-{
 
+
+int _tmain(int argc, char* argv[])
+{
+	Grid mGrid = Grid(25,25);
+	mGrid.print();
 	while(1)
 	{
-		print();
+	//	print();
 	}
 	return 0;
 }

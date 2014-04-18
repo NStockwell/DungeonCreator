@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include <tchar.h>
 
+#include "Grid.h"
+#include "DungeonTile.h"
 
 
 // TODO: reference additional headers your program requires here
