@@ -10,8 +10,8 @@ Grid::Grid(int width, int height)
 		for(int j = 0; j < height; j++)
 		{
 			DungeonTile dTile = DungeonTile(i,j,TileType::CLEAR);
-			if(i == 1)
-				dTile.setType(TileType::WALL);
+			//if(i == 1)
+			//	dTile.setType(TileType::WALL);
 			vDT.push_back(dTile);
 		}
 		mTiles.push_back(vDT);
@@ -47,3 +47,11 @@ void Grid::print()
 	}
 	cout << "\n\n\n";
 }
+
+
+int Grid::getWidth(){return mWidth;}
+int Grid::getHeight(){return mHeight;}
+	void Grid::setTileType(int x, int y, TileType newType)
+	{
+		mTiles.at(y).at(x).setType(newType);
+	}

@@ -14,6 +14,9 @@ class Grid
 public:
 	Grid(int width, int height);
 	void print();
+	int getWidth();
+	int getHeight();
+	void setTileType(int x, int y, TileType newType);
 
 private:
 	int mWidth;
