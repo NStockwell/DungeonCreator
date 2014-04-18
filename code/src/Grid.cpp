@@ -1,51 +1,62 @@
 #include "Grid.h"
 
+
 Grid::Grid(int width, int height)
 {
+	
 	mWidth = width;
 	mHeight = height;
-	for(int i = 0; i < width; i++)
+	for(int i = 0; i < height; i++)
 	{
 		vector<DungeonTile> vDT;
-		for(int j = 0; j < height; j++)
+		for(int j = 0; j < width; j++)
 		{
 			DungeonTile dTile = DungeonTile(i,j,TileType::CLEAR);
-			//if(i == 1)
-			//	dTile.setType(TileType::WALL);
 			vDT.push_back(dTile);
 		}
 		mTiles.push_back(vDT);
 	}
 }
 
+Grid::~Grid()
+{
+}
 
 void Grid::print()
 {
-	cout << "Printing current state of Grid:\n   ";
+	fopen_s(&mFile, "dungeon.txt", "a");
+	fprintf(mFile, "Printing current state of Grid:");
+	fprintf(mFile,"\n   ");
 	for(int i = 0; i < mWidth; i++)
 	{
-		cout << i;
+		char c[10];
+		itoa(i,c,10);
+		fprintf(mFile,c);
 		if(i < 10)
-			cout << " ";
+			fprintf(mFile, " ");
 	}
-	cout << "\n";
-	for(int i = 0; i < mWidth; i++)
+	fprintf(mFile,"\n");
+	for(int i = 0; i < mHeight; i++)
 	{
-		cout << i;
+		char c[10];
+		itoa(i,c,10);
+		fprintf(mFile,c);
 		if(i < 10)
-			cout << " ";
+			fprintf(mFile, " ");
 		
-			cout << " ";
+			fprintf(mFile," ");
 		vector<DungeonTile> vDT = mTiles.at(i);
-		for(int j = 0; j < mHeight; j++)
+		for(int j = 0; j < mWidth; j++)
 		{
 			DungeonTile dTile = vDT.at(j);
-			dTile.print();
-			cout << " ";
+			dTile.print(mFile);
+			fprintf(mFile," ");
 		}
-		cout << "\n";
+		fprintf(mFile,"\n");
 	}
-	cout << "\n\n\n";
+	fprintf(mFile,"\n\n\n");
+	fflush(mFile);
+	fclose(mFile);
 }
 
 
@@ -54,4 +65,10 @@ int Grid::getHeight(){return mHeight;}
 	void Grid::setTileType(int x, int y, TileType newType)
 	{
 		mTiles.at(y).at(x).setType(newType);
+	}
+
+	
+	TileType Grid::getTileType(int x, int y)
+	{
+		return mTiles.at(y).at(x).getType();
 	}

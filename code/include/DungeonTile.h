@@ -25,7 +25,7 @@ public:
 	TileType getType();
 	
 	void setType(TileType type);
-	void print();
+	void print(FILE* f);
 
 private:
 	int mX;

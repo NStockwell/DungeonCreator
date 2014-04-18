@@ -29,18 +29,18 @@ void DungeonTile::setType(TileType type)
 	mType = type;
 }
 
-void DungeonTile::print()
+void DungeonTile::print(FILE* f)
 {
 	switch (mType)
 	{
 		case TileType::CLEAR:
 		{
-			cout << ".";
+			fprintf(f,".");
 			break;
 		}
 		case TileType::WALL:
 		{
-			cout << "@";
+			fprintf(f, "@");
 			break;
 		}
 		default:
